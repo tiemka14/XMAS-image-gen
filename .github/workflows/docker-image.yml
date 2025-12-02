@@ -25,4 +25,14 @@ jobs:
           docker system prune -a -f || true
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        run: docker build . --file Dockerfile --tag image-gen:$(date +%s)
+
+      - name: Save Docker image
+        run: |
+          docker save image-gen:latest | gzip > image.tar.gz
+
+      - name: Upload Docker artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-image
+          path: image.tar.gz
