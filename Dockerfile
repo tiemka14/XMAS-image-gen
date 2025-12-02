@@ -8,17 +8,16 @@ RUN rm -rf /IDM-VTON/.git
 
 WORKDIR /IDM-VTON
 
-COPY requirements.txt /IDM-VTON/
-
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir runpod && \
-    pip cache purge
-
 RUN pip install torch==2.0.1+cu118 \
     torchvision==0.15.2+cu118 \
     torchaudio==2.0.2+cu118 \
     -f https://download.pytorch.org/whl/torch_stable.html
+
+COPY requirements.txt /IDM-VTON/
+
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
+    pip cache purge
 
 COPY rp_handler.py /IDM-VTON/
 
