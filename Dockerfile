@@ -2,10 +2,14 @@ FROM python:3.10-slim
 
 WORKDIR /
 
-# Install dependencies
+RUN git clone https://github.com/yisol/IDM-VTON.git
+
+WORKDIR /IDM-VTON
+
+RUN conda env create -f environment.yaml
+RUN conda activate idm
 RUN pip install --no-cache-dir runpod
 
-# Copy your handler file
 COPY rp_handler.py /
 
 # Start the container

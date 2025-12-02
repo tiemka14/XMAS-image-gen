@@ -1,5 +1,7 @@
 import runpod
 import time  
+import base64
+import gradio_demo.app.start_tryon
 
 def handler(event):
 #   This function processes incoming requests to your Serverless endpoint.
@@ -14,16 +16,18 @@ def handler(event):
     print(f"Worker Start")
     input = event['input']
     
-    prompt = input.get('prompt')  
+    imgs = base64.b64decode(input.get('imgs'))
+    garm_img = base64.b64decode(input.get('garm_img'))
+    prompt = input.get('prompt') 
+    is_checked = input.get('is_checked',True)
+    is_checked_crop = input.get('is_checked_crop',False)
+    denoise_steps = input.get('denoise_steps',30)
+    seed  = input.get('seed',42)
     seconds = input.get('seconds', 0)  
-
-    print(f"Received prompt: {prompt}")
-    print(f"Sleeping for {seconds} seconds...")
     
-    # You can replace this sleep call with your own Python code
-    time.sleep(seconds)  
+    image_out,masked_img = start_tryon(imgs,garm_img,prompt,is_checked,is_checked_crop,denoise_steps,seed) 
     
-    return prompt 
+    return base64.b64encode(image_out) 
 
 # Start the Serverless function when the script is run
 if __name__ == '__main__':
