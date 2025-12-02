@@ -1,7 +1,16 @@
 import runpod
 import time  
 import base64
-import gradio_demo.app.start_tryon
+import os
+import sys
+
+# Ensure the repository root (the directory containing this file) is on sys.path
+project_root = os.path.dirname(os.path.abspath(__file__))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+# Import the start_tryon function directly so it can be called below.
+from gradio_demo.app.start_tryon import start_tryon
 
 def handler(event):
 #   This function processes incoming requests to your Serverless endpoint.
