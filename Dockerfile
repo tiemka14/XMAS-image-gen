@@ -7,8 +7,6 @@ RUN git clone https://github.com/yisol/IDM-VTON.git
 
 WORKDIR /IDM-VTON
 
-COPY environment.yaml /IDM-VTON/
-
 # Convert conda env to pip
 RUN grep -A1000 "pip:" environment.yaml | sed '1d' | sed '/^name:/d' | sed '/^dependencies:/d' | sed 's/- //' > requirements.txt
 
