@@ -13,6 +13,12 @@ RUN pip install torch==2.0.1+cu118 \
     torchaudio==2.0.2+cu118 \
     -f https://download.pytorch.org/whl/torch_stable.html
 
+RUN apt-get update && apt-get install -y build-essential
+
+RUN pip install \
+    https://dl.fbaipublicfiles.com/detectron2/wheels/cu118/torch2.0/index.html \
+    --no-cache-dir
+
 COPY requirements.txt .
 
 RUN pip install --upgrade pip && \
