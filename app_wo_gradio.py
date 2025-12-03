@@ -1,5 +1,12 @@
 import sys
+import os
+
 sys.path.append('./')
+
+print(">>> Files in root:", os.listdir("/"), flush=True)
+print(">>> Files in /IDM-VTON:", os.listdir("/IDM-VTON"), flush=True)
+print(">>> Current CWD:", os.getcwd(), flush=True)
+
 from PIL import Image
 from src.tryon_pipeline import StableDiffusionXLInpaintPipeline as TryonPipeline
 from src.unet_hacked_garmnet import UNet2DConditionModel as UNet2DConditionModel_ref
