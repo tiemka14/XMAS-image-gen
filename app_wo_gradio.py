@@ -25,7 +25,11 @@ from preprocess.openpose.run_openpose import OpenPose
 from detectron2.data.detection_utils import convert_PIL_to_numpy,_apply_exif_orientation
 from torchvision.transforms.functional import to_pil_image
 
+print("app_wo_gradio.py loaded successfully.")
+
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+
+print(f"Using device: {device}")
 
 def pil_to_binary_mask(pil_image, threshold=0):
     np_image = np.array(pil_image)
@@ -43,6 +47,8 @@ def pil_to_binary_mask(pil_image, threshold=0):
 
 base_path = '/IDM-VTON'
 #example_path = os.path.join(os.path.dirname(__file__), 'example')
+print("Current working directory:", os.getcwd())
+print("Base path for models:", base_path)
 
 unet = UNet2DConditionModel.from_pretrained(
     base_path,

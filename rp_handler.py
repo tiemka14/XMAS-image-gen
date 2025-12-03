@@ -4,6 +4,7 @@ import base64
 import os
 import sys
 
+print(f"RP Handler loaded successfully.")
 # Ensure the repository root (the directory containing this file) is on sys.path
 project_root = os.path.dirname(os.path.abspath(__file__))
 if project_root not in sys.path:
@@ -33,7 +34,9 @@ def handler(event):
     seed  = input.get('seed',42)
     seconds = input.get('seconds', 0)  
     
+    print(f"start_tryon called")
     image_out,masked_img = start_tryon(imgs,garm_img,prompt,is_checked,is_checked_crop,denoise_steps,seed) 
+    print("start_tryon finished")
     
     return base64.b64encode(image_out) 
 
