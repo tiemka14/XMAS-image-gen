@@ -9,7 +9,7 @@ project_root = os.path.dirname(os.path.abspath(__file__))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-from gradio_demo.app import start_tryon
+from app_wo_gradio import start_tryon
 
 def handler(event):
 #   This function processes incoming requests to your Serverless endpoint.
