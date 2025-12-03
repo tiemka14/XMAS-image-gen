@@ -4,7 +4,7 @@ import base64
 import os
 import sys
 
-print(f"RP Handler loaded successfully.")
+print(f"RP Handler loaded successfully.", flush=True)
 # Ensure the repository root (the directory containing this file) is on sys.path
 project_root = os.path.dirname(os.path.abspath(__file__))
 if project_root not in sys.path:

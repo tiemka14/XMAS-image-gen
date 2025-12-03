@@ -19,6 +19,8 @@ RUN pip install --upgrade pip && \
 
 COPY rp_handler.py .
 COPY app_wo_gradio.py .
+RUN ls -lah
+RUN ls -lah /IDM-VTON
 
 # Start the container
 CMD ["python3", "-u", "rp_handler.py"]
