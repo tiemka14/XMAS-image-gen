@@ -18,7 +18,7 @@ RUN pip install --upgrade pip && \
     pip cache purge
 
 COPY rp_handler.py .
-RUN touch /IDM-VTON/gradio_demo/__init__.py
+COPY app_wo_gradio.py .
 
 # Start the container
 CMD ["python3", "-u", "rp_handler.py"]
