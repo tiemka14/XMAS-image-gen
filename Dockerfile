@@ -34,14 +34,14 @@ RUN apt-get update && apt-get install -y \
     pax-utils \
  && rm -rf /var/lib/apt/lists/*
 
-# del execstack flag
-RUN execstack -c /usr/local/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.cpython-310-x86_64-linux-gnu.so \
-    || echo "Execstack patch warning ignored (file path may differ)"
+# Detect onnxruntime .so and strip execstack protection
+RUN sh -c "find /usr/local -name 'onnxruntime_pybind11_state*.so' -print -exec execstack -c {} \;" \
+    || echo '⚠ onnxruntime execstack patch not applied (might be CPU build or different path)'
 
 COPY rp_handler.py /IDM-VTON/
 COPY app_wo_gradio.py /IDM-VTON/
 
-#ENV PYTHONPATH="/IDM-VTON:/IDM-VTON/gradio_demo/detectron2:/IDM-VTON/gradio_demo/densepose:$PYTHONPATH"
+ENV PYTHONPATH="/IDM-VTON:/IDM-VTON/gradio_demo:/IDM-VTON/gradio_demo/detectron2:/IDM-VTON/gradio_demo/densepose:$PYTHONPATH"
 
 # Start the container
 CMD ["python3", "-u", "rp_handler.py"]
