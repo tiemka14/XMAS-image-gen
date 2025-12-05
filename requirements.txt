@@ -15,5 +15,6 @@
       pycocotools
       basicsr
       av
-      onnxruntime==1.16.2
+      #onnxruntime==1.16.2
+      onnxruntime-gpu
       runpod
