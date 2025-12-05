@@ -17,4 +17,5 @@
       av
       #onnxruntime==1.16.2
       onnxruntime-gpu
+      matplotlib
       runpod
