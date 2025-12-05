@@ -15,7 +15,8 @@ RUN pip install torch==2.0.1+cu118 \
 
 RUN apt-get update && apt-get install -y build-essential
 
-RUN python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
+RUN git clone https://github.com/facebookresearch/detectron2.git
+RUN python -m pip install -e detectron2
 
 COPY requirements.txt .
 
