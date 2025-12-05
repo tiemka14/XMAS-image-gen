@@ -5,7 +5,7 @@ sys.path.append('./')
 
 print(">>> Files in root:", os.listdir("/"), flush=True)
 print(">>> Files in /IDM-VTON:", os.listdir("/IDM-VTON"), flush=True)
-print(">>> Files in /IDM-VTON/gradio_demo:", os.listdir("/IDM-VTON/gradio_demo "), flush=True)
+print(">>> Files in /IDM-VTON/gradio_demo:", os.listdir("/IDM-VTON/gradio_demo"), flush=True)
 print(">>> Current CWD:", os.getcwd(), flush=True)
 
 from PIL import Image
