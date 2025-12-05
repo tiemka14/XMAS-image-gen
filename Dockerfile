@@ -31,12 +31,16 @@ RUN apt-get update && apt-get install -y \
     libsm6 \
     libxrender1 \
     libxext6 \
+    execstack \
  && rm -rf /var/lib/apt/lists/*
+
+# del execstack flag
+RUN execstack -c /usr/local/lib/python3.10/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.cpython-310-x86_64-linux-gnu.so
 
 COPY rp_handler.py /IDM-VTON/
 COPY app_wo_gradio.py /IDM-VTON/
 
-ENV PYTHONPATH="/IDM-VTON:/IDM-VTON/Igradio_demo/detectron2:/IDM-VTON/Igradio_demo/densepose:$PYTHONPATH"
+#ENV PYTHONPATH="/IDM-VTON:/IDM-VTON/gradio_demo/detectron2:/IDM-VTON/gradio_demo/densepose:$PYTHONPATH"
 
 # Start the container
 CMD ["python3", "-u", "rp_handler.py"]
