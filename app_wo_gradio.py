@@ -2,6 +2,11 @@ import sys
 import os
 
 sys.path.append('./')
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+GRADIO_DEMO_DIR = os.path.join(CURRENT_DIR, "gradio_demo")
+
+if GRADIO_DEMO_DIR not in sys.path:
+    sys.path.append(GRADIO_DEMO_DIR)
 
 print(">>> Files in root:", os.listdir("/"), flush=True)
 print(">>> Files in /IDM-VTON:", os.listdir("/IDM-VTON"), flush=True)
