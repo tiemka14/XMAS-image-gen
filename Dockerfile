@@ -41,6 +41,14 @@ RUN sh -c "find /usr/local -name 'onnxruntime_pybind11_state*.so' -print -exec e
 COPY rp_handler.py /IDM-VTON/
 COPY app_wo_gradio.py /IDM-VTON/
 
+RUN wget https://huggingface.co/lllyasviel/Annotators/resolve/main/humanparsing_resnet50.onnx \
+     -O /IDM-VTON/ckpt/humanparsing/parsing_atr.onnx
+RUN wget https://huggingface.co/lllyasviel/Annotators/resolve/main/humanparsing_lip.onnx \
+     -O /IDM-VTON/ckpt/humanparsing/parsing_lip.onnx
+
+RUN ls -lh /IDM-VTON/ckpt/humanparsing
+RUN file /IDM-VTON/ckpt/humanparsing/parsing_atr.onnx
+
 ENV PYTHONPATH="/IDM-VTON:/IDM-VTON/gradio_demo:/IDM-VTON/gradio_demo/detectron2:/IDM-VTON/gradio_demo/densepose:$PYTHONPATH"
 
 # Start the container
