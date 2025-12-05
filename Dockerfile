@@ -15,9 +15,9 @@ RUN pip install torch==2.0.1+cu118 \
 
 RUN apt-get update && apt-get install -y build-essential
 
-RUN git clone https://github.com/facebookresearch/detectron2.git
-RUN python -m pip install -e detectron2
-RUN rm -rf /IDM-VTON/detectron2/.git
+#RUN git clone https://github.com/facebookresearch/detectron2.git
+#RUN python -m pip install -e detectron2
+#RUN rm -rf /IDM-VTON/detectron2/.git
 
 COPY requirements.txt .
 
@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install -y \
 COPY rp_handler.py /IDM-VTON/
 COPY app_wo_gradio.py /IDM-VTON/
 
-ENV PYTHONPATH="/IDM-VTON:/IDM-VTON/detectron2:/IDM-VTON/densepose:$PYTHONPATH"
+ENV PYTHONPATH="/IDM-VTON:/IDM-VTON/Igradio_demo/detectron2:/IDM-VTON/Igradio_demo/densepose:$PYTHONPATH"
 
 # Start the container
 CMD ["python3", "-u", "rp_handler.py"]
